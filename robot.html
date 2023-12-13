@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siber Güvenlik Robotu</title>
+    <style>
+         
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            
+        }
+        #terminal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 900px;
+            height: 600px;
+            background-color: #111;
+            border: 2px solid #0f0;
+            overflow: auto;
+            padding: 10px;
+        }
+        input {
+            width: calc(100% - 20px);
+            border: none;
+            background-color: #111;
+            color: #0f0;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #0f0;
+            color: #111;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <p>Merhaba! Siber Güvenlik Robotu'na hoş geldiniz.</p>
+        <p>Sorularınızı yazabilirsiniz.</p>
+        <input type="text" id="commandInput" placeholder="Komut yazın..." onkeypress="handleKeyPress(event)">
+        <a href="file:///D:/BLOG/robot.html"><button>Temizle</button></a>
+    
+    </div>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                processCommand();
+            }
+        }
+
+        function processCommand() {
+            const inputElement = document.getElementById('commandInput');
+            const command = inputElement.value.toLowerCase();
+            const terminal = document.getElementById('terminal');
+
+            const responses = {
+                'zafiyet taraması nedir ve neden önemlidir?': 'Zafiyet taraması, bir sistemdeki güvenlik açıklarını bulma sürecidir. Bu, potansiyel saldırıları önceden engellemenin önemli bir adımıdır.',
+                'güvenlik duvarı nedir ve nasıl çalışır?': 'Güvenlik duvarı, ağ trafiğini izleyen ve istenmeyen trafiği engelleyen bir güvenlik önlemidir. Paket filtreleme ve durum tabanlı engelleme gibi teknikleri kullanır.',
+                'şifreleme neden iletişim güvenliği için önemlidir?': 'Şifreleme, iletişim sırasında bilgileri koruma amacıyla kullanılan bir yöntemdir. Bu, verilerin gizliliğini sağlar ve yetkisiz erişimi engeller.',
+                // Diğer soruların cevapları buraya eklenebilir.
+            };
+
+            const response = responses[command] || 'Bilinmeyen komut. Lütfen geçerli bir komut girin.';
+            terminal.innerHTML += `<p><strong>Komut:</strong> ${command}</p><p><strong>Cevap:</strong> ${response}</p>`;
+            inputElement.value = '';
+        }
+            function clearTerminal() {
+            const terminal = document.getElementById('terminal');
+            terminal.innerHTML = ''; // Terminali temizle
+        }
+    </script>
+    
+</body>
+</html>
